@@ -20,6 +20,11 @@ Features include:
 - And a fancy Exercise tracker (you can add/remove/update, it does not track history only the current KG that you can lift)
 -- Go to https://strengthlevel.com/strength-standards if you want to insert the base data for exercises.
 
+![image](https://github.com/user-attachments/assets/2ab0fa40-4a46-44ae-a164-7ec491a80f87)
+![image](https://github.com/user-attachments/assets/79da0531-80db-4269-9528-3235a4b60792)
+![image](https://github.com/user-attachments/assets/f2b2c02a-8ab7-4152-bf25-a070418c5397)
+
+
 
 ## Installation and usage
 
