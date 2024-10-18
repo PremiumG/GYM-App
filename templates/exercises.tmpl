@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html x-data="main" class="" :class="[$store.app.mode]" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Site Tiltle -->
+    <title>Exercises</title>
+
+    <!-- Site favicon -->
+    <link rel="shortcut icon" href="../assets/assets/images/favicon.ico" />
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" type="text/css" href="../assets/assets/css/style.css" />
+</head>
+
+<body x-data="Main"
+    class="antialiased relative font-inter bg-white dark:bg-black text-black dark:text-white text-sm font-normal overflow-x-hidden vertical"
+    :class="[ $store.app.sidebar ? 'toggle-sidebar' : '', $store.app.rightsidebar ? 'right-sidebar' : '', $store.app.menu, $store.app.layout]">
+
+    <!-- Start Menu Sidebar Olverlay -->
+    <div x-cloak class="fixed inset-0 bg-[black]/60 z-40 lg:hidden" :class="{'hidden' : !$store.app.sidebar}"
+        @click="$store.app.toggleSidebar()"></div>
+    <!-- End Menu Sidebar Olverlay -->
+
+    <!-- Start Right Sidebar Olverlay -->
+    <div x-cloak class="fixed inset-0 bg-[black]/60 z-50 2xl:hidden" :class="{'hidden' : !$store.app.rightsidebar}"
+        @click="$store.app.rightSidebar()"></div>
+    <!-- End Right Sidebar Olverlay -->
+
+    <!-- Start Main Content -->
+    <div class="main-container navbar-sticky flex" :class="[$store.app.navbar]">
+        <!-- Start Sidebar -->
+        <nav
+            class="sidebar fixed top-0 bottom-0 z-40 flex-none w-[212px] border-r border-black/10 dark:border-white/10 transition-all duration-300">
+            <div class="bg-white dark:bg-black ">
+                <!-- Start Logo -->
+                <div class="flex p-4">
+                    <a href="/dashboard" class="main-logo flex-1 w-full">
+                        <img src="../assets/assets/images/logo.svg" alt="logo" class="block dark:hidden" />
+                        <img src="../assets/assets/images/dark-logo.svg" alt="logo" class="hidden dark:block" />
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <!-- Start Menu -->
+                <ul class="relative h-[calc(100vh-58px)] flex flex-col gap-1 overflow-y-auto overflow-x-hidden p-4 py-0"
+                    x-data="{ activeMenu: 'Exercises' }">
+                    <li class="menu nav-item">
+                        <a href="javaScript:;" class="nav-link group text-black dark:text-white"
+                            :class="{'active' : activeMenu === 'Exercises'}"
+                            @click="activeMenu === 'Exercises' ? activeMenu = null : activeMenu = 'Exercises'">
+                            <div class="text-black/50 dark:text-white/20 w-4 h-4 flex items-center justify-center"
+                                :class="{'!rotate-90' : activeMenu === 'Exercises'}">
+                                <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.659675 9.35355C0.446775 9.15829 0.446775 8.84171 0.659675 8.64645L4.25 5.35355C4.4629 5.15829 4.4629 4.84171 4.25 4.64645L0.659675 1.35355C0.446776 1.15829 0.446776 0.841709 0.659675 0.646446C0.872575 0.451184 1.21775 0.451185 1.43065 0.646446L5.02098 3.93934C5.65967 4.52513 5.65968 5.47487 5.02098 6.06066L1.43065 9.35355C1.21775 9.54882 0.872574 9.54882 0.659675 9.35355Z"
+                                        fill="currentcolor" />
+                                </svg>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4.20007 18.2C4.06372 17.4747 3.9967 16.738 4.00012 16C3.99854 13.5182 4.76721 11.0972 6.2002 9.07092C7.63318 7.04456 9.65967 5.51306 12.0001 4.6875V13.6875L4.20007 18.2Z"
+                                        fill="black" fill-opacity="0.1" />
+                                    <path
+                                        d="M17 16V4C17 3.44772 16.5523 3 16 3C15.4477 3 15 3.44772 15 4V16C15 16.5523 15.4477 17 16 17C16.5523 17 17 16.5523 17 16Z"
+                                        fill="currentcolor" />
+                                    <path
+                                        d="M5.11288 21.1336L5.11213 21.1341C4.88247 21.2667 4.71492 21.4852 4.64633 21.7414C4.62374 21.8257 4.6123 21.9127 4.6123 22C4.6123 22.0106 4.61247 22.0212 4.61281 22.0317C4.61804 22.1965 4.66392 22.3574 4.74638 22.5002C4.92504 22.8095 5.25511 23 5.6123 23C5.62784 23 5.64337 22.9996 5.65889 22.9989C5.81854 22.9915 5.97408 22.9459 6.11248 22.8659L6.11323 22.8655L26.8875 10.8659C27.1968 10.6873 27.3873 10.3572 27.3873 10C27.3873 9.98447 27.3869 9.96894 27.3862 9.95342C27.3788 9.79377 27.3332 9.63822 27.2532 9.49983C27.1206 9.27017 26.9021 9.10261 26.6459 9.03402C26.5616 9.01144 26.4746 9 26.3873 9C26.3767 9 26.3662 9.00017 26.3556 9.0005C26.1908 9.00573 26.0299 9.05162 25.8871 9.13407L5.11288 21.1336Z"
+                                        fill="currentcolor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.5009 14.5531L4.70089 19.0656C4.47132 19.1984 4.1984 19.2346 3.94216 19.1662C3.68592 19.0977 3.46735 18.9303 3.33454 18.7008C3.27789 18.6028 3.23827 18.496 3.21736 18.3849C3.21736 18.3849 2.99459 17.2005 3.00013 15.9954C3.00013 15.9954 2.99749 11.8678 5.38375 8.4935C5.38375 8.4935 7.77001 5.11918 11.6675 3.74445C11.9176 3.65622 12.1925 3.67097 12.4318 3.78545C12.671 3.89992 12.855 4.10475 12.9432 4.35486C12.9809 4.46172 13.0001 4.5742 13.0001 4.6875V13.6875C13.0001 14.0445 12.8099 14.3743 12.5009 14.5531ZM5.01273 16.5746L11.0001 13.1107V6.19572C11.0001 6.19572 8.61014 7.39503 7.01668 9.64828C7.01668 9.64828 4.9979 12.503 5.00011 16.0046C5.00011 16.0046 4.9988 16.2903 5.01273 16.5746Z"
+                                        fill="currentcolor" />
+                                    <path
+                                        d="M10.5588 25.5608C8.00169 24.1059 6.51229 21.5688 6.51229 21.5688C6.37802 21.34 6.1584 21.174 5.90173 21.1072C5.8195 21.0858 5.73487 21.075 5.64991 21.075C5.63698 21.075 5.62406 21.0753 5.61115 21.0758C5.44642 21.0821 5.28582 21.1292 5.14365 21.2126C4.83778 21.3922 4.6499 21.7203 4.6499 22.075L4.64991 22.0779C4.65042 22.2549 4.6979 22.4286 4.78752 22.5813C6.54772 25.5797 9.56976 27.2991 9.56976 27.2991C12.5918 29.0186 16.0687 28.9998 16.0687 28.9998C19.5456 28.981 22.5489 27.2291 22.5489 27.2291C25.5522 25.4772 27.2799 22.4599 27.2799 22.4599C29.0077 19.4426 28.9985 15.9657 28.9985 15.9657C28.9893 12.4887 27.2457 9.48061 27.2457 9.48061C25.502 6.47249 22.4895 4.73644 22.4895 4.73644C19.477 3.00039 16 3 16 3C15.9389 3 15.878 3.00558 15.8181 3.01667C15.344 3.10435 15 3.51778 14.9999 3.99989C14.9999 4.01594 15.0003 4.03196 15.0011 4.04792C15.013 4.29624 15.1169 4.53122 15.2927 4.70702C15.4802 4.89458 15.7346 4.99997 15.9998 5H16.0002C18.942 5.00045 21.4909 6.4693 21.4909 6.4693C24.0399 7.93826 25.5153 10.4836 25.5153 10.4836C26.9907 13.0289 26.9985 15.9709 26.9985 15.9709C27.0063 18.913 25.5443 21.4661 25.5443 21.4661C24.0824 24.0191 21.5411 25.5016 21.5411 25.5016C18.9999 26.984 16.0579 26.9998 16.0579 26.9998C13.1159 27.0157 10.5588 25.5608 10.5588 25.5608Z"
+                                        fill="currentcolor" />
+                                </svg>
+                                <span class="pl-1">Dashboard</span>
+                            </div>
+                        </a>
+                        <ul x-cloak x-show="activeMenu === 'Exercises'" x-collapse
+                            class="sub-menu flex flex-col gap-1 text-black dark:text-white/80">
+                            <li>
+                                <a href="/dashboard">Main</a>
+                            </li>
+                            <li>
+                                <a href="/exercises" class="active">Exercises</a>
+                            </li>
+                            <li>
+                                <a href="/extra">Extra</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- End Menu -->
+            </div>
+        </nav>
+        <!-- End sidebar -->
+
+        <!-- Start Content Area -->
+        <div class="main-content flex-1">
+            <!-- Start Content -->
+            <div class="overflow-y-auto overflow-x-hidden">
+                <div x-data="sales" class="p-4 sm:p-7 min-h-[calc(100vh-145px)]">
+                    <div class="relative mb-4 mr-4 w-20 flex">
+                        <select class="form-select font-semibold text-sm px-2 dark:bg-black dark:text-white">
+                            <option class="px-2" value="year">Year</option>
+                            <option class="px-2" value="month">Month</option>
+                        </select>
+                        <div class="flex items-center lg:order-2 ">
+                            <div class="mr-2">
+                                <a href="javascript:;" class="text-black dark:text-white" x-cloak
+                                    x-show="$store.app.mode === 'light'" @click="$store.app.toggleMode('dark')">
+                                    <svg class="w-5 h-5" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M27.0876 19.0752C25.1243 19.6257 23.0498 19.6438 21.0771 19.1274C19.1045 18.6111 17.3049 17.5789 15.863 16.1372C14.4214 14.6953 13.3892 12.8958 12.8728 10.9231C12.3564 8.95044 12.3745 6.87598 12.925 4.9126C10.9895 5.45142 9.22876 6.48779 7.81836 7.91895C6.40796 9.34985 5.39697 11.1255 4.88647 13.0688C4.37573 15.012 4.38306 17.0552 4.90796 18.9946C5.43262 20.9343 6.4563 22.7024 7.87695 24.1233C9.29785 25.5439 11.0659 26.5676 13.0056 27.0923C14.9451 27.6172 16.9883 27.6245 18.9314 27.1138C20.8748 26.6033 22.6504 25.5923 24.0813 24.1819C25.5125 22.7715 26.5488 21.0107 27.0876 19.0752Z"
+                                            fill="currentColor" fill-opacity="0.1" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M28.051 19.3438L28.0506 19.3454C28.0506 19.3454 27.1566 22.5551 24.7835 24.8941C24.7835 24.8941 22.4095 27.2339 19.1858 28.081C19.1858 28.081 15.962 28.9282 12.7445 28.0577C12.7445 28.0577 9.52702 27.1872 7.1701 24.8303C7.1701 24.8303 4.81318 22.4734 3.94271 19.2559C3.94271 19.2559 3.07225 16.0383 3.91937 12.8146C3.91937 12.8146 4.76649 9.59087 7.10626 7.21693C7.10626 7.21693 9.44603 4.84299 12.6572 3.94922C12.9127 3.8781 13.1859 3.9114 13.4169 4.04178C13.6479 4.17217 13.8176 4.38895 13.8887 4.64446C13.9377 4.82052 13.9375 5.00664 13.8882 5.1826C13.8882 5.1826 13.1206 7.91975 13.8404 10.6698C13.8404 10.6698 14.5603 13.4199 16.5704 15.43C16.5704 15.43 18.5805 17.4401 21.3306 18.16C21.3306 18.16 24.0806 18.8798 26.8178 18.1122C26.9882 18.0644 27.1683 18.0628 27.3396 18.1073L27.3559 18.1117C27.6928 18.2055 27.9562 18.4684 28.0507 18.8051C28.0984 18.9755 28.1001 19.1556 28.0556 19.3269L28.051 19.3438ZM23.3795 23.4697C23.3795 23.4697 24.7551 22.114 25.539 20.4099C25.539 20.4099 23.1856 20.7129 20.8241 20.0948C20.8241 20.0948 17.5496 19.2377 15.1562 16.8442C15.1562 16.8442 12.7627 14.4508 11.9056 11.1763C11.9056 11.1763 11.2875 8.81482 11.5905 6.46138C11.5905 6.46138 9.88644 7.24531 8.53069 8.62085C8.53069 8.62085 6.56528 10.615 5.8537 13.3229C5.8537 13.3229 5.14212 16.0308 5.87331 18.7336C5.87331 18.7336 6.6045 21.4363 8.58431 23.4161C8.58431 23.4161 10.5641 25.3959 13.2668 26.1271C13.2668 26.1271 15.9695 26.8583 18.6775 26.1467C18.6775 26.1467 21.3854 25.4351 23.3795 23.4697Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </a>
+                                <a href="javascript:;" class="text-black dark:text-white" x-cloak
+                                    x-show="$store.app.mode === 'dark'" @click="$store.app.toggleMode('light')">
+                                    <svg class="w-5 h-5" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.5 16C23.5 20.1421 20.1421 23.5 16 23.5C11.8579 23.5 8.5 20.1421 8.5 16C8.5 11.8579 11.8579 8.5 16 8.5C20.1421 8.5 23.5 11.8579 23.5 16Z"
+                                            fill="currentColor" fill-opacity="0.1" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M16 7.5C16 7.5 17.7287 7.5 19.3089 8.16838C19.3089 8.16838 20.8345 8.81364 22.0104 9.98959C22.0104 9.98959 23.1864 11.1655 23.8316 12.6911C23.8316 12.6911 24.5 14.2713 24.5 16C24.5 16 24.5 17.7287 23.8316 19.3089C23.8316 19.3089 23.1864 20.8345 22.0104 22.0104C22.0104 22.0104 20.8345 23.1864 19.3089 23.8316C19.3089 23.8316 17.7287 24.5 16 24.5C16 24.5 14.2713 24.5 12.6911 23.8316C12.6911 23.8316 11.1655 23.1864 9.98959 22.0104C9.98959 22.0104 8.81364 20.8345 8.16838 19.3089C8.16838 19.3089 7.5 17.7287 7.5 16C7.5 16 7.5 14.2713 8.16838 12.6911C8.16838 12.6911 8.81364 11.1655 9.98959 9.98959C9.98959 9.98959 11.1655 8.81364 12.6911 8.16838C12.6911 8.16838 14.2713 7.5 16 7.5ZM16 9.5C16 9.5 13.3076 9.5 11.4038 11.4038C11.4038 11.4038 9.5 13.3076 9.5 16C9.5 16 9.5 18.6924 11.4038 20.5962C11.4038 20.5962 13.3076 22.5 16 22.5C16 22.5 18.6924 22.5 20.5962 20.5962C20.5962 20.5962 22.5 18.6924 22.5 16C22.5 16 22.5 13.3076 20.5962 11.4038C20.5962 11.4038 18.6924 9.5 16 9.5Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M17 4.5V2C17 1.44772 16.5523 1 16 1C15.4477 1 15 1.44772 15 2V4.5C15 5.05228 15.4477 5.5 16 5.5C16.5523 5.5 17 5.05228 17 4.5Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M6.80672 5.39299C6.61918 5.20545 6.36483 5.1001 6.09961 5.1001C5.83439 5.1001 5.58004 5.20545 5.3925 5.39299C5.20497 5.58053 5.09961 5.83488 5.09961 6.1001C5.09961 6.36531 5.20497 6.61967 5.3925 6.8072L7.155 8.5697C7.34254 8.75724 7.59689 8.8626 7.86211 8.8626C8.12733 8.8626 8.38168 8.75724 8.56922 8.5697C8.75675 8.38217 8.86211 8.12781 8.86211 7.8626C8.86211 7.59738 8.75675 7.34303 8.56922 7.15549L6.80672 5.39299Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M4.5 15H2C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17H4.5C5.05228 17 5.5 16.5523 5.5 16C5.5 15.4477 5.05228 15 4.5 15Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M5.3925 25.1928C5.20497 25.3804 5.09961 25.6347 5.09961 25.9C5.09961 25.9172 5.10006 25.9345 5.10095 25.9517C5.11375 26.1987 5.21762 26.4322 5.3925 26.6071C5.58004 26.7946 5.83439 26.9 6.09961 26.9C6.36483 26.9 6.61918 26.7946 6.80672 26.6071L8.56922 24.8446C8.75675 24.657 8.86211 24.4027 8.86211 24.1375C8.86211 23.8722 8.75675 23.6179 8.56922 23.4303C8.38168 23.2428 8.12733 23.1375 7.86211 23.1375C7.84485 23.1375 7.8276 23.1379 7.81037 23.1388C7.56338 23.1516 7.32989 23.2555 7.155 23.4303L5.3925 25.1928Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M15 27.5V30C15 30.5523 15.4477 31 16 31C16.5523 31 17 30.5523 17 30V27.5C17 26.9477 16.5523 26.5 16 26.5C15.4477 26.5 15 26.9477 15 27.5Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M23.4307 24.8447L25.1931 26.6071C25.3806 26.7946 25.635 26.9 25.9002 26.9C26.1654 26.9 26.4198 26.7946 26.6073 26.6071C26.7948 26.4195 26.9002 26.1652 26.9002 25.9C26.9002 25.6347 26.7948 25.3804 26.6073 25.1928L24.8449 23.4305C24.6573 23.2428 24.4029 23.1375 24.1377 23.1375C23.8725 23.1375 23.6181 23.2428 23.4306 23.4303C23.2431 23.6179 23.1377 23.8722 23.1377 24.1375C23.1377 24.4027 23.2431 24.657 23.4307 24.8447Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M27.5 17H30C30.5523 17 31 16.5523 31 16C31 15.4477 30.5523 15 30 15H27.5C26.9477 15 26.5 15.4477 26.5 16C26.5 16.5523 26.9477 17 27.5 17Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M26.6073 6.8072C26.7948 6.61967 26.9002 6.36531 26.9002 6.1001C26.9002 5.83488 26.7948 5.58053 26.6073 5.39299C26.4198 5.20545 26.1654 5.1001 25.9002 5.1001C25.635 5.1001 25.3806 5.20545 25.1931 5.39299L23.4307 7.15537C23.2431 7.34303 23.1377 7.59738 23.1377 7.8626C23.1377 8.12781 23.2431 8.38217 23.4306 8.56971C23.6181 8.75724 23.8725 8.8626 24.1377 8.8626C24.4029 8.8626 24.6573 8.75724 24.8448 8.5697L26.6073 6.8072Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-7">
+
+                        {{range .allListedExercises}}
+
+                        <div onclick="openModall({{.Name}})" id="openModalTrigger" class="bg-lightblue-100 rounded-2xl p-5 flex">
+                            <!-- Image Placeholder -->
+                            <div class="w-1/3 h-full bg-gray-200 flex items-center justify-center rounded-lg">
+                                <img src="{{.Img}}" alt="Icon" class=" w-24 h-24"> <!-- Increased size -->
+                            </div>
+
+                            <!-- Text Section (Right Side) -->
+                            <div class="w-2/3 flex flex-col justify-between pl-8"> <!-- Increased padding -->
+                                <!-- Name and Weight -->
+                                <div>
+                                    <h2 class="text-xl font-semibold text-black">{{.Name}}</h2>
+                                    <p class="text-2xl font-bold text-black">{{.Weight}}KG</p>
+                                </div>
+
+                                <!-- Inline Weights -->
+                                <div class="mt-2 flex justify-between">
+                                    <p class="text-sm font-medium text-black">B - {{.B_weight}}KG</p>
+                                    <p>&nbsp &nbsp </p>
+                                    <p class="text-sm font-medium text-black">I - {{.I_weight}}KG</p>
+                                    <p>&nbsp &nbsp &nbsp</p>
+                                    <p class="text-sm font-medium text-black">A - {{.A_weight}}KG</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{end}}
+
+
+
+
+
+                        <div class="bg-lightblue-100 rounded-2xl p-6 flex items-center justify-center" id="openModal">
+                            <p class="text-2xl font-bold text-black">Add/Remove</p>
+                        </div>
+
+                        <div class="bg-lightblue-200 rounded-2xl p-8 shadow-md flex flex-col items-center justify-center text-black"
+                            id="openModal">
+
+
+                            <div class="textbox-container flex items-center justify-between w-full max-w-md">
+                                <input type="text" id="textboxExerciseRemove"
+                                    class="border border-gray-300 rounded-lg p-3 w-2/3 focus:outline-none focus:ring-2 focus:ring-lightblue-500"
+                                    placeholder="Insert exercise name to delete" />
+                                <button onclick="removeExercise()" id="remove-button"
+                                    class="bg-red-600 text-white px-6 py-3 rounded-lg ml-4 hover:bg-red-700 transition">Remove</button>
+                            </div>
+                        </div>
+
+
+                        <!-- Modal------------------------------- -->
+                        <div id="modal"
+                            class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden">
+                            <!-- Modal Content -->
+                            <div class="bg-lightblue-100 rounded-2xl p-6 w-96">
+                                <h2 class="text-xl font-semibold text-center text-black mb-4">Upload Image and Enter
+                                    Details</h2>
+
+                                <!-- Image Upload -->
+                                <div class="mb-4 flex flex-col items-center">
+                                    <label class="cursor-pointer bg-gray-200 rounded-lg p-2 w-full text-center">
+                                        <input type="file" accept="image/png" class="hidden" id="imgUpload" required
+                                            onchange="handleImageUpload(event)">
+                                        Upload PNG
+                                    </label>
+                                    <p class="mt-2 text-sm text-gray-600">Image will be resized to fit.</p>
+                                </div>
+
+                                <!-- Name Input -->
+                                <div class="mb-4 text-black">
+                                    <label for="name" class="block text-sm font-medium text-black">Name:</label>
+                                    <input type="text" id="name"
+                                        class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                        placeholder="Enter name" required>
+                                </div>
+
+                                <!-- KG Input -->
+                                <div class="mb-4 text-black">
+                                    <label for="currentWeight" class="block text-sm font-medium text-black">Current
+                                        KG:</label>
+                                    <input type="number" id="currentWeight"
+                                        class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                        placeholder="Enter current weight" required>
+                                </div>
+
+                                <!-- Inline Inputs for B, I, A -->
+                                <div class="flex justify-between text-black">
+                                    <div class="w-1/3">
+                                        <label for="bWeight" class="block text-sm font-medium text-black">B:</label>
+                                        <input type="number" id="bWeight"
+                                            class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                            placeholder="Weight" required>
+                                    </div>
+                                    <div class="w-1/3">
+                                        <label for="iWeight" class="block text-sm font-medium text-black">I:</label>
+                                        <input type="number" id="iWeight"
+                                            class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                            placeholder="Weight" required>
+                                    </div>
+                                    <div class="w-1/3">
+                                        <label for="aWeight" class="block text-sm font-medium text-black">A:</label>
+                                        <input type="number" id="aWeight"
+                                            class="mt-1 p-2 border border-gray-300 rounded-md w-full "
+                                            placeholder="Weight" required>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="mt-4 flex justify-between">
+                                    <button class="bg-green-500 text-white font-semibold py-2 px-4 rounded-md"
+                                        onclick="submitForm()">Add</button>
+                                    <button class="bg-gray-500 text-black font-semibold py-2 px-4 rounded-md"
+                                        onclick="cancel()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="weightModal"
+                            class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-50 text-black">
+                            <div class="bg-lightblue-200 rounded-2xl p-8 shadow-md w-96">
+                                <h2 class="text-3xl font-bold mb-6">Update Weight</h2>
+
+                                <div class="textbox-container flex items-center justify-between w-full text-black">
+                                    <input type="number" id="weightInput"
+                                        class="border border-gray-300 rounded-lg p-3 w-2/3 focus:outline-none focus:ring-2 focus:ring-lightblue-500"
+                                        placeholder="Enter new weight" />
+                                    <button onclick="updateWeight()" id="update-button"
+                                        class="bg-green-600 text-white px-6 py-3 rounded-lg ml-4 hover:bg-green-700 transition">Update</button>
+                                </div>
+
+                                <button onclick="closeModall()" class="mt-4 text-red-500 hover:underline">Cancel</button>
+                            </div>
+                            <!-- ----------------------------------------------------------- -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Content -->
+            </div>
+            <!-- End Content Area -->
+        </div>
+        <!-- End Main Content -->
+
+        <!-- All javascirpt -->
+        <!-- Alpine js -->
+        <script src="../assets/assets/js/alpine-collaspe.min.js"></script>
+        <script src="../assets/assets/js/alpine-persist.min.js"></script>
+        <script src="../assets/assets/js/alpine.min.js" defer></script>
+
+        <!-- ApexCharts js -->
+        <script src="../assets/assets/js/apexcharts.js"></script>
+        <script src="../assets/assets/js/apexcharts-main.js"></script>
+
+        <!-- Custom js -->
+        <script src="../assets/assets/js/custom.js"></script>
+        <script src="../assets/assets/js/exercises.js"></script>
+        <script>
+
+        </script>
+</body>
+
+</html>

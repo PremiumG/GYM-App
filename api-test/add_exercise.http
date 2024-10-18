@@ -1,0 +1,49 @@
+POST http://127.0.0.1:8080/addExercise
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQyMjY0MjksInVzZXJJRCI6MX0.BZ0TV72DFCFQz3IC_kdeeSLpti2SIBu8nCEEn9F5KOc
+
+
+{
+    "Name": "Deadlift",
+    "PictureLink": "nek/link.txt",
+    "exerciseDifficultyLevels": [
+        {
+            "bodyWeight": 60,
+            "beginner": 10,
+            "novice": 15,
+            "intermediate": 20,
+            "advanced": 25
+        },
+        {
+            "bodyWeight": 70,
+            "beginner": 12,
+            "novice": 18,
+            "intermediate": 24,
+            "advanced": 30
+        }
+        ,
+        {
+            "bodyWeight": 80,
+            "beginner": 12,
+            "novice": 18,
+            "intermediate": 24,
+            "advanced": 30
+        }
+        ,
+        {
+            "bodyWeight": 90,
+            "beginner": 12,
+            "novice": 18,
+            "intermediate": 24,
+            "advanced": 30
+        }
+        ,
+        {
+            "bodyWeight": 100,
+            "beginner": 12,
+            "novice": 18,
+            "intermediate": 24,
+            "advanced": 30
+        }
+    ]
+}

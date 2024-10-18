@@ -1,0 +1,3 @@
+GET  http://127.0.0.1:8080/getBodyWeight
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQyMjY0MjksInVzZXJJRCI6MX0.BZ0TV72DFCFQz3IC_kdeeSLpti2SIBu8nCEEn9F5KOc

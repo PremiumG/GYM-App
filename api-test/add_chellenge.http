@@ -1,0 +1,7 @@
+POST http://127.0.0.1:8080/setChallenge
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI3MjgzODgsInVzZXJJRCI6MX0.bkT0hRJlZpIp2pwUh6lP-g8Z1qNcvdwu9b9nI6vUZ-w
+
+{
+    "name": "test challenge"
+}
