@@ -36,7 +36,7 @@ go run . -username=<insert> -pass=<insert>
 ```
 - and next time you run it with:
 ```
-go run . -username=<insert> -pass=<insert>
+go run .
 ```
 
 
